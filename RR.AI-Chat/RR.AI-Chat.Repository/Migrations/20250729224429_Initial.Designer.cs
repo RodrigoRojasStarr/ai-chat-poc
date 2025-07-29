@@ -12,7 +12,7 @@ using RR.AI_Chat.Repository;
 namespace RR.AI_Chat.Repository.Migrations
 {
     [DbContext(typeof(AIChatDbContext))]
-    [Migration("20250729194506_Initial")]
+    [Migration("20250729224429_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -114,7 +114,7 @@ namespace RR.AI_Chat.Repository.Migrations
 
                     b.PrimitiveCollection<string>("Embedding")
                         .IsRequired()
-                        .HasColumnType("vector(768)");
+                        .HasColumnType("vector(1536)");
 
                     b.Property<int>("Number")
                         .HasColumnType("int");

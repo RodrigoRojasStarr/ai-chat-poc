@@ -110,7 +110,7 @@ namespace RR.AI_Chat.Repository.Migrations
                     DocumentId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Number = table.Column<int>(type: "int", nullable: false),
                     Text = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Embedding = table.Column<string>(type: "vector(768)", nullable: false),
+                    Embedding = table.Column<string>(type: "vector(1536)", nullable: false),
                     DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DateDeactivated = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },

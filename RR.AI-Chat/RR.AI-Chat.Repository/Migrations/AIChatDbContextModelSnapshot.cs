@@ -111,7 +111,7 @@ namespace RR.AI_Chat.Repository.Migrations
 
                     b.PrimitiveCollection<string>("Embedding")
                         .IsRequired()
-                        .HasColumnType("vector(768)");
+                        .HasColumnType("vector(1536)");
 
                     b.Property<int>("Number")
                         .HasColumnType("int");
