@@ -1,11 +1,11 @@
 ﻿using Azure.AI.OpenAI;
-using Azure.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.AI;
 using OllamaSharp;
 using OpenAI;
 using RR.AI_Chat.Repository;
 using RR.AI_Chat.Service;
+using System.ClientModel;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -60,7 +60,7 @@ var azureOpenAiUrl = builder.Configuration.GetValue<string>("AzureOpenAI:Url") ?
 var azureOpenAiKey = builder.Configuration.GetValue<string>("AzureOpenAI:ApiKey") ?? string.Empty;
 builder.Services.AddKeyedChatClient(
         "azureopenai",
-        sp => new AzureOpenAIClient(new Uri(azureOpenAiUrl), new System.ClientModel.ApiKeyCredential(azureOpenAiKey))
+        sp => new AzureOpenAIClient(new Uri(azureOpenAiUrl), new ApiKeyCredential(azureOpenAiKey))
                   .GetChatClient("starr-gpt41-latest")
                   .AsIChatClient()
     )
@@ -76,7 +76,9 @@ builder.Services.AddKeyedChatClient(
 
 // AI Embedding Generators
 IEmbeddingGenerator<string, Embedding<float>> ollamaGenerator =
-    new OllamaApiClient(new Uri("http://localhost:11434/"), "nomic-embed-text");
+    new AzureOpenAIClient(new Uri(azureOpenAiUrl), new ApiKeyCredential(azureOpenAiKey))
+                  .GetEmbeddingClient("starr-text-embed-3-small")
+                  .AsIEmbeddingGenerator();
 builder.Services.AddEmbeddingGenerator(ollamaGenerator);
 
 builder.Services.AddTransient<IChatService, ChatService>();

@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.AI;
 using RR.AI_Chat.Entity;
 using RR.AI_Chat.Repository.Configurations;
 using System.Text.Json;
@@ -33,7 +32,7 @@ namespace RR.AI_Chat.Repository
 
             });
 
-            modelBuilder.Entity<DocumentPage>().Property(p => p.Embedding).HasColumnType("vector(768)");
+            modelBuilder.Entity<DocumentPage>().Property(p => p.Embedding).HasColumnType("vector(1536)");
 
             modelBuilder.ApplyConfiguration(new AIServiceConfiguration());
             modelBuilder.ApplyConfiguration(new ModelConfiguration());
