@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.AI;
+﻿using Microsoft.Extensions.AI;
 using Microsoft.Extensions.Logging;
 using RR.AI_Chat.Dto;
 using RR.AI_Chat.Dto.Enums;
@@ -28,6 +27,7 @@ namespace RR.AI_Chat.Service
         [FromKeyedServices("ollama")] IChatClient ollamaClient,
         [FromKeyedServices("openai")] IChatClient openAiClient,
         [FromKeyedServices("azureopenai")] IChatClient azureOpenAiClient,
+        ISalesforceRTToolService salesforceRTToolService,
         AIChatDbContext ctx) : IChatService
     {
         private readonly ILogger _logger = logger ?? throw new ArgumentNullException(nameof(logger));
@@ -37,6 +37,7 @@ namespace RR.AI_Chat.Service
         private readonly IDocumentToolService _documentToolService = documentToolService ?? throw new ArgumentNullException(nameof(documentToolService));
         private readonly ISessionService _sessionService = sessionService ?? throw new ArgumentNullException(nameof(sessionService));
         private readonly IModelService _modelService = modelService ?? throw new ArgumentNullException(nameof(modelService));
+        private readonly ISalesforceRTToolService _salesforceRTToolService = salesforceRTToolService ?? throw new ArgumentNullException(nameof(salesforceRTToolService));
         private readonly AIChatDbContext _ctx = ctx;
 
         /// <summary>
@@ -295,11 +296,13 @@ namespace RR.AI_Chat.Service
                 throw new ArgumentNullException(nameof(model), "Model cannot be null.");
             }
 
-            var documentTools = _documentToolService.GetTools();
+            var allTools = new List<AITool>();
+            allTools.AddRange(_documentToolService.GetTools());
+            allTools.AddRange(_salesforceRTToolService.GetTools());
 
             var chatOptions = new ChatOptions
             {
-                Tools = model.IsToolEnabled ? documentTools : [],
+                Tools = model.IsToolEnabled ? allTools : null,
                 AllowMultipleToolCalls = true,
                 ToolMode = ChatToolMode.RequireAny,
                 ModelId = model.Name,

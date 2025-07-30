@@ -18,6 +18,9 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddDbContext<AIChatDbContext>(options =>
   options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"), o => o.UseVectorSearch()));
 
+builder.Services.AddDbContext<SalesforceRTDbContext>(options =>
+  options.UseSqlServer(builder.Configuration.GetConnectionString("SalesforceRT")));
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -87,6 +90,7 @@ builder.Services.AddTransient<IDocumentService, DocumentService>();
 builder.Services.AddTransient<IDocumentToolService, DocumentToolService>();
 builder.Services.AddTransient<ISessionService, SessionService>();
 builder.Services.AddTransient<IModelService, ModelService>();
+builder.Services.AddTransient<ISalesforceRTToolService, SalesforceRTToolService>();
 
 var app = builder.Build();
 
