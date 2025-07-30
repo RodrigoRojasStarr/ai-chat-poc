@@ -72,8 +72,8 @@ builder.Services.AddKeyedChatClient(
     {
         x.AllowConcurrentInvocation = false;
         x.IncludeDetailedErrors = true;
-        x.MaximumIterationsPerRequest = 5;
-        x.MaximumConsecutiveErrorsPerRequest = 5;
+        x.MaximumIterationsPerRequest = 10;
+        x.MaximumConsecutiveErrorsPerRequest = 10;
     });
 
 
