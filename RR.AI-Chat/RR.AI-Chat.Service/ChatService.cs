@@ -28,6 +28,7 @@ namespace RR.AI_Chat.Service
         [FromKeyedServices("openai")] IChatClient openAiClient,
         [FromKeyedServices("azureopenai")] IChatClient azureOpenAiClient,
         ISalesforceRTToolService salesforceRTToolService,
+        ISalesforceApiToolService salesforceApiToolService,
         AIChatDbContext ctx) : IChatService
     {
         private readonly ILogger _logger = logger ?? throw new ArgumentNullException(nameof(logger));
@@ -38,6 +39,7 @@ namespace RR.AI_Chat.Service
         private readonly ISessionService _sessionService = sessionService ?? throw new ArgumentNullException(nameof(sessionService));
         private readonly IModelService _modelService = modelService ?? throw new ArgumentNullException(nameof(modelService));
         private readonly ISalesforceRTToolService _salesforceRTToolService = salesforceRTToolService ?? throw new ArgumentNullException(nameof(salesforceRTToolService));
+        private readonly ISalesforceApiToolService _salesforceApiToolService = salesforceApiToolService ?? throw new ArgumentNullException(nameof(salesforceApiToolService));
         private readonly AIChatDbContext _ctx = ctx;
 
         /// <summary>
@@ -299,6 +301,7 @@ namespace RR.AI_Chat.Service
             var allTools = new List<AITool>();
             allTools.AddRange(_documentToolService.GetTools());
             allTools.AddRange(_salesforceRTToolService.GetTools());
+            allTools.AddRange(_salesforceApiToolService.GetTools());    
 
             var chatOptions = new ChatOptions
             {

@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.AI;
 using OllamaSharp;
 using OpenAI;
+using RR.AI_Chat.Common;
 using RR.AI_Chat.Repository;
 using RR.AI_Chat.Service;
 using System.ClientModel;
@@ -91,6 +92,9 @@ builder.Services.AddTransient<IDocumentToolService, DocumentToolService>();
 builder.Services.AddTransient<ISessionService, SessionService>();
 builder.Services.AddTransient<IModelService, ModelService>();
 builder.Services.AddTransient<ISalesforceRTToolService, SalesforceRTToolService>();
+builder.Services.AddTransient<ISalesforceApiToolService, SalesforceApiToolService>();
+
+builder.Services.Configure<SalesforceSettings>(builder.Configuration.GetSection("Salesforce"));
 
 var app = builder.Build();
 

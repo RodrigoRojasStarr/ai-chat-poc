@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="DeveloperForce.Force" Version="2.1.0" />
     <PackageReference Include="EFCore.SqlServer.VectorSearch" Version="9.0.0-preview.2" />
     <PackageReference Include="Microsoft.Extensions.AI.Abstractions" Version="9.7.1" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.7" />
@@ -17,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\RR.AI-Chat.Common\RR.AI-Chat.Common.csproj" />
     <ProjectReference Include="..\RR.AI-Chat.Dto\RR.AI-Chat.Dto.csproj" />
     <ProjectReference Include="..\RR.AI-Chat.Repository\RR.AI-Chat.Repository.csproj" />
   </ItemGroup>

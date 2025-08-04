@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RR.AI-Chat.Repository", "RR
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RR.AI-Chat.Entity", "RR.AI-Chat.Entity\RR.AI-Chat.Entity.csproj", "{55BC6F7C-CF72-4A8C-93A7-29653D984DBB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RR.AI-Chat.Common", "RR.AI-Chat.Common\RR.AI-Chat.Common.csproj", "{D6275582-4147-44AB-B11A-C30B6FB1EBFA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{55BC6F7C-CF72-4A8C-93A7-29653D984DBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{55BC6F7C-CF72-4A8C-93A7-29653D984DBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{55BC6F7C-CF72-4A8C-93A7-29653D984DBB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6275582-4147-44AB-B11A-C30B6FB1EBFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6275582-4147-44AB-B11A-C30B6FB1EBFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6275582-4147-44AB-B11A-C30B6FB1EBFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6275582-4147-44AB-B11A-C30B6FB1EBFA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
